@@ -1,0 +1,24 @@
+#! python3
+""" mclip.py - A multi-clipboard program. """
+import sys, pyperclip
+
+TEXT = {
+    'agree': """Yes, I agree. That sounds fine to me.""",
+    'busy': """Sorry, can we do this layer this week or next week?""",
+    'upsell': """Would you consider making this a monthly donation?"""
+}
+
+
+# Python command line arguments are stored in the variable sys.argv.
+# The first item in the sys.argv list will always be a string containing the program's filename
+if len(sys.argv) < 2:
+    print("Usage: python mclip.py [keyphrase] - copy phrase text")
+    sys.exit()
+
+keyphrase = sys.argv[1]  # the first command line arg is the keyphrase
+
+if keyphrase in TEXT:
+    pyperclip.copy(TEXT[keyphrase])
+    print(f"Text for {keyphrase} copied to clipboard.")
+else:
+    print(f"There is no text for {keyphrase}")
